@@ -297,19 +297,27 @@ void ScreenShotWidget::on_buttonSave_Clicked()
     QString mCURDIr = QCoreApplication::applicationDirPath();
     QString filePath=mCURDIr + "/screenshot/"+currentDate.toString("MMdd_hhmmss")+".png";
 
-    // QString filter = tr("Images (*.tif);;Images (*.jpg);;Images (*.bmp);;Images (*.png)");
-    // QString FileName = QFileDialog::getSaveFileName(this, tr("保存文件"), "./", filter);
-    // qDebug()<<FileName;
-    QString FileDirectory=QFileDialog::getExistingDirectory();
-    qDebug()<<FileDirectory;
-    QDir dir;
-    if(!dir.exists(mCURDIr + "/screenshot")) dir.mkdir(mCURDIr + "/screenshot");
+
 
 
 
     //获取矩形区域截图(减去笔刷)，存储在pixmap中
     QScreen *screen=QGuiApplication::primaryScreen();
     QPixmap pixmap=screen->grabWindow(0,rect.x(),rect.y(),rect.width(),rect.height());
+
+
+
+    //选择路径
+    QString filter = tr("Images (*.png);;Images (*.bmp);;Images (*.tif);;Images (*.jpg)");
+    filePath = QFileDialog::getSaveFileName(this, tr("保存文件"), filePath, filter);
+    QDir dir2=QDir(filePath);
+    dir2.cdUp();
+    if(!dir2.exists(dir2.path())) dir2.mkdir(dir2.path());
+
+    // qDebug()<<dir2.path();
+    // QDir dir;
+    // if(!dir.exists(mCURDIr + "/screenshot")) dir.mkdir(mCURDIr + "/screenshot");
+
     if (!pixmap.save(filePath)) QMessageBox::warning(this, tr("提示"), tr("保存图片失败"));
 }
 
