@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>sources/cmake.png</file>
+        <file>sources/download.png</file>
+        <file>sources/xmark.png</file>
+        <file>sources/screenshot.png</file>
+    </qresource>
+</RCC>
