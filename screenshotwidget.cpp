@@ -10,21 +10,25 @@ ScreenShotWidget::ScreenShotWidget(QWidget *parent) :
     setWindowModality(Qt::ApplicationModal);
     //窗口背景为透明
     setAttribute(Qt::WA_TranslucentBackground);
+
+
     //设置窗口跟踪鼠标移动事件
     setMouseTracking(true);
     //设置保存、取消按钮以及长宽label并暂时隐藏
     buttonSave=new QPushButton(this);
     buttonSave->setParent(this);
     buttonSave->setFixedSize(35,30);
-    buttonSave->setText("√");
-    buttonSave->setStyleSheet("QPushButton {font-size:16pt; color:green; font-weight:800;}");
+    buttonSave->setIcon(QIcon(":/sources/download.png"));
     buttonSave->setVisible(false);
+
     buttonCancel=new QPushButton(this);
     buttonCancel->setParent(this);
     buttonCancel->setFixedSize(35,30);
-    buttonCancel->setText("✖");
-    buttonCancel->setStyleSheet("QPushButton {font-size:20pt; color:red;font-weight:100;}");
+    buttonCancel->setIcon(QIcon(":/sources/xmark.png"));
     buttonCancel->setVisible(false);
+
+
+
     lblHeightWidth=new QLabel(this);
     lblHeightWidth->setParent(this);
     lblHeightWidth->setFixedSize(100,10);
@@ -36,11 +40,30 @@ ScreenShotWidget::ScreenShotWidget(QWidget *parent) :
     lblMagnifyGlass->setFixedSize(100,100);
     lblMagnifyGlass->setVisible(true);
     lblMagnifyGlass->setText("wo zai zhe");
+
+    //toobar
+    toolbar=new QToolBar(this);
+    toolbar->setFixedSize(300,35);
+    toolbar->setVisible(false);
+    actionSave=new QAction(this);
+    actionSave->setIcon(QIcon(":/sources/download.png"));
+    actionSave->setObjectName("actionSave");
+    toolbar->addAction(actionSave);
+    actionCancel=new QAction(this);
+    actionCancel->setIcon(QIcon(":/sources/xmark.png"));
+    actionCancel->setObjectName("actionCancel");
+    toolbar->addAction(actionCancel);
+    toolbar->setStyleSheet("QToolBar {background-color:white;}");
+
+
     //设置鼠标光标模式为十字
     setCursor(Qt::CursorShape::CrossCursor);
+
     //连接按钮的信号槽
-    connect(this->buttonSave,SIGNAL(clicked()),this,SLOT(on_buttonSave_Clicked()));
-    connect(this->buttonCancel,SIGNAL(clicked()),this,SLOT(on_buttonCancel_Clicked()));
+    // connect(this->buttonSave,SIGNAL(clicked()),this,SLOT(on_buttonSave_Clicked()));
+    // connect(this->buttonCancel,SIGNAL(clicked()),this,SLOT(on_buttonCancel_Clicked()));
+    connect(actionCancel,&QAction::triggered,this,&ScreenShotWidget::on_buttonCancel_Clicked);
+    connect(actionSave,&QAction::triggered,this,&ScreenShotWidget::on_buttonSave_Clicked);
 }
 
 void ScreenShotWidget::mousePressEvent(QMouseEvent *event)
@@ -246,12 +269,17 @@ void ScreenShotWidget::paintEvent(QPaintEvent *event)
     update();
     //显示按钮与标签
     if(this->height()<m_endPos.y()+30){
-        buttonSave->move(rect.x()+rect.width()-buttonSave->width()-10,rect.y()+rect.height()-30);
-        buttonCancel->move(rect.x()+rect.width()-buttonSave->width()-buttonCancel->width()-8,rect.y()+rect.height()-30);
+        buttonSave->move(rect.x()+rect.width()-buttonSave->width(),rect.y()+rect.height()-30);
+        buttonCancel->move(rect.x()+rect.width()-buttonSave->width()-buttonCancel->width(),rect.y()+rect.height()-30);
+        toolbar->setVisible(true);
+        toolbar->move(rect.x(),rect.y()+rect.height()+20);
+
     }
     else{
-        buttonSave->move(rect.x()+rect.width()-buttonSave->width()-10,rect.y()+rect.height());
-        buttonCancel->move(rect.x()+rect.width()-buttonSave->width()-buttonCancel->width()-8,rect.y()+rect.height());
+        buttonSave->move(rect.x()+rect.width()-buttonSave->width(),rect.y()+rect.height());
+        buttonCancel->move(rect.x()+rect.width()-buttonSave->width()-buttonCancel->width(),rect.y()+rect.height());
+        toolbar->setVisible(true);
+        toolbar->move(rect.x(),rect.y()+rect.height()+20);
     }
     lblHeightWidth->setVisible(true);
     lblHeightWidth->move(rect.x(),rect.y()-12);
@@ -276,11 +304,15 @@ void ScreenShotWidget::on_buttonSave_Clicked()
     if (!pixmap.save(filePath)) QMessageBox::warning(this, tr("提示"), tr("保存图片失败"));
 }
 
+
+
 void ScreenShotWidget::on_buttonCancel_Clicked()
 {
     //关闭透明页面
     close();
 }
+
+
 
 QPoint ScreenShotWidget::getPointInWhichSqure(QPoint point)
 {

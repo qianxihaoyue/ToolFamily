@@ -19,7 +19,7 @@
 #include <QDebug>
 #include <QLabel>
 #include <QScreen>
-
+#include<QToolBar>
 class ScreenShotWidget : public QWidget
 {
     Q_OBJECT
@@ -46,8 +46,10 @@ private:
     QLabel *lblHeightWidth;
     QLabel *lblMagnifyGlass;
     QPainter m_painter;
-    QPoint m_startPos,m_endPos;           //用于记录生成的截图区域
-    QPoint m_oldPos,m_distancePos;     //用于拖拽截图区域
+    QPoint m_startPos;
+    QPoint m_endPos;           //用于记录生成的截图区域
+    QPoint m_oldPos;
+    QPoint m_distancePos;     //用于拖拽截图区域
     bool m_screenshot_active;
 
     QPoint m_topLeft;
@@ -59,6 +61,10 @@ private:
     QPoint m_leftCenter;
     QPoint m_rightCenter;
     int m_cursorMode;
+
+    QToolBar *toolbar;
+    QAction* actionCancel;
+    QAction* actionSave;
 };
 
 #endif // SCREENSHOTWIDGET_H

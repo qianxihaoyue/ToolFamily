@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     ,screenshotwidget_1(nullptr)
 {
     ui->setupUi(this);
+    this->setWindowTitle("ToolFamily");
     QAction* actionScreenShot=ui->toolBar->findChild<QAction*>("actionScreenShot");
     connect(actionScreenShot,&QAction::triggered,this,&MainWindow::on_actionScreenShot_triggered);
 
