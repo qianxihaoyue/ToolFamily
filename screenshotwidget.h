@@ -20,11 +20,14 @@
 #include <QLabel>
 #include <QScreen>
 #include<QToolBar>
+#include<QFileDialog>
 class ScreenShotWidget : public QWidget
 {
     Q_OBJECT
 public:
     ScreenShotWidget(QWidget *parent = nullptr);
+
+
 protected:
     //鼠标按下事件
     void mousePressEvent(QMouseEvent *event) override;
@@ -34,6 +37,8 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event) override;
     //绘制边框事件
     void paintEvent(QPaintEvent *event) override;
+
+
 private slots:
     void on_buttonSave_Clicked();
     void on_buttonCancel_Clicked();
