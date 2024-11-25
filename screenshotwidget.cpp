@@ -300,8 +300,8 @@ void ScreenShotWidget::on_buttonSave_Clicked()
     // QString filter = tr("Images (*.tif);;Images (*.jpg);;Images (*.bmp);;Images (*.png)");
     // QString FileName = QFileDialog::getSaveFileName(this, tr("保存文件"), "./", filter);
     // qDebug()<<FileName;
-    QString FileDirectory=QFileDialog::getExistingDirectory();
-    qDebug()<<FileDirectory;
+    // QString FileDirectory=QFileDialog::getExistingDirectory();
+    // qDebug()<<FileDirectory;
     QDir dir;
     if(!dir.exists(mCURDIr + "/screenshot")) dir.mkdir(mCURDIr + "/screenshot");
 
