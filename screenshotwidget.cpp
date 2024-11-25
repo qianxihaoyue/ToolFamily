@@ -14,18 +14,18 @@ ScreenShotWidget::ScreenShotWidget(QWidget *parent) :
 
     //设置窗口跟踪鼠标移动事件
     setMouseTracking(true);
-    //设置保存、取消按钮以及长宽label并暂时隐藏
-    buttonSave=new QPushButton(this);
-    buttonSave->setParent(this);
-    buttonSave->setFixedSize(35,30);
-    buttonSave->setIcon(QIcon(":/sources/download.png"));
-    buttonSave->setVisible(false);
+    // //设置保存、取消按钮以及长宽label并暂时隐藏
+    // buttonSave=new QPushButton(this);
+    // buttonSave->setParent(this);
+    // buttonSave->setFixedSize(35,30);
+    // buttonSave->setIcon(QIcon(":/sources/download.png"));
+    // buttonSave->setVisible(false);
 
-    buttonCancel=new QPushButton(this);
-    buttonCancel->setParent(this);
-    buttonCancel->setFixedSize(35,30);
-    buttonCancel->setIcon(QIcon(":/sources/xmark.png"));
-    buttonCancel->setVisible(false);
+    // buttonCancel=new QPushButton(this);
+    // buttonCancel->setParent(this);
+    // buttonCancel->setFixedSize(35,30);
+    // buttonCancel->setIcon(QIcon(":/sources/xmark.png"));
+    // buttonCancel->setVisible(false);
 
 
 
@@ -44,16 +44,21 @@ ScreenShotWidget::ScreenShotWidget(QWidget *parent) :
     //toobar
     toolbar=new QToolBar(this);
     toolbar->setFixedSize(300,35);
-    toolbar->setVisible(false);
+    toolbar->setStyleSheet("QToolBar {background-color:white;}");
+
     actionSave=new QAction(this);
     actionSave->setIcon(QIcon(":/sources/download.png"));
-    actionSave->setObjectName("actionSave");
     toolbar->addAction(actionSave);
+
     actionCancel=new QAction(this);
     actionCancel->setIcon(QIcon(":/sources/xmark.png"));
-    actionCancel->setObjectName("actionCancel");
     toolbar->addAction(actionCancel);
-    toolbar->setStyleSheet("QToolBar {background-color:white;}");
+
+    actionTempStore=new QAction(this);
+    actionTempStore->setIcon(QIcon(":/sources/cmark.png"));
+    toolbar->addAction(actionTempStore);
+
+    toolbar->setVisible(false);
 
 
     //设置鼠标光标模式为十字
@@ -81,18 +86,18 @@ void ScreenShotWidget::mousePressEvent(QMouseEvent *event)
             m_screenshot_active=true;
         }
     }
-    else if(event->button()==Qt::RightButton)//重新截图
-    {
-        if(m_endPos.isNull())
-            on_buttonCancel_Clicked();
-        m_startPos=QPoint(0,0);
-        m_endPos=QPoint(0,0);
-        buttonSave->setVisible(false);
-        buttonCancel->setVisible(false);
-        lblHeightWidth->setVisible(false);
-        setCursor(Qt::CursorShape::CrossCursor);
-        update();
-    }
+    // else if(event->button()==Qt::RightButton)//重新截图
+    // {
+    //     if(m_endPos.isNull())
+    //         on_buttonCancel_Clicked();
+    //     m_startPos=QPoint(0,0);
+    //     m_endPos=QPoint(0,0);
+    //     // buttonSave->setVisible(false);
+    //     // buttonCancel->setVisible(false);
+    //     lblHeightWidth->setVisible(false);
+    //     setCursor(Qt::CursorShape::CrossCursor);
+    //     update();
+    // }
 }
 
 void ScreenShotWidget::mouseMoveEvent(QMouseEvent *event)
@@ -197,8 +202,9 @@ void ScreenShotWidget::mouseReleaseEvent(QMouseEvent *event)
         m_screenshot_active=false;
         if (m_endPos != m_startPos) {
             //弹出保存/取消按钮
-            buttonSave->setVisible(true);
-            buttonCancel->setVisible(true);
+            // buttonSave->setVisible(true);
+            // buttonCancel->setVisible(true);
+            toolbar->setVisible(true);
         }
     }
 }
@@ -269,15 +275,15 @@ void ScreenShotWidget::paintEvent(QPaintEvent *event)
     update();
     //显示按钮与标签
     if(this->height()<m_endPos.y()+30){
-        buttonSave->move(rect.x()+rect.width()-buttonSave->width(),rect.y()+rect.height()-30);
-        buttonCancel->move(rect.x()+rect.width()-buttonSave->width()-buttonCancel->width(),rect.y()+rect.height()-30);
+        // buttonSave->move(rect.x()+rect.width()-buttonSave->width(),rect.y()+rect.height()-30);
+        // buttonCancel->move(rect.x()+rect.width()-buttonSave->width()-buttonCancel->width(),rect.y()+rect.height()-30);
         toolbar->setVisible(true);
         toolbar->move(rect.x(),rect.y()+rect.height()+20);
 
     }
     else{
-        buttonSave->move(rect.x()+rect.width()-buttonSave->width(),rect.y()+rect.height());
-        buttonCancel->move(rect.x()+rect.width()-buttonSave->width()-buttonCancel->width(),rect.y()+rect.height());
+        // buttonSave->move(rect.x()+rect.width()-buttonSave->width(),rect.y()+rect.height());
+        // buttonCancel->move(rect.x()+rect.width()-buttonSave->width()-buttonCancel->width(),rect.y()+rect.height());
         toolbar->setVisible(true);
         toolbar->move(rect.x(),rect.y()+rect.height()+20);
     }
