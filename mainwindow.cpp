@@ -26,9 +26,9 @@ void MainWindow::on_actionScreenShot_triggered()
         screenshotwidget_1->deleteLater();
         screenshotwidget_1=nullptr;
     }
-    this->setWindowOpacity(0);
+    // this->setWindowOpacity(0);
     screenshotwidget_1=new ScreenShotWidget();
     screenshotwidget_1->showFullScreen();
-    this->setWindowOpacity(0);
+    // this->setWindowOpacity(1);
 }
 
