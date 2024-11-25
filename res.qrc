@@ -4,5 +4,6 @@
         <file>sources/download.png</file>
         <file>sources/xmark.png</file>
         <file>sources/screenshot.png</file>
+        <file>sources/tools.png</file>
     </qresource>
 </RCC>
