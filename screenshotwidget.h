@@ -21,6 +21,10 @@
 #include <QScreen>
 #include<QToolBar>
 #include<QFileDialog>
+#include<QClipboard>
+
+
+
 class ScreenShotWidget : public QWidget
 {
     Q_OBJECT
@@ -42,6 +46,7 @@ protected:
 private slots:
     void on_buttonSave_Clicked();
     void on_buttonCancel_Clicked();
+    void on_buttionTempStore_Clicked();
 private:
     QPoint getPointInWhichSqure(QPoint point);
 
@@ -67,6 +72,8 @@ private:
     QPoint m_rightCenter;
     int m_cursorMode;
 
+
+    //工具栏相关
     QToolBar *toolbar;
     QAction* actionCancel;
     QAction* actionSave;
