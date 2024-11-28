@@ -43,6 +43,8 @@ protected:
     void paintEvent(QPaintEvent *event) override;
 
 
+
+
 private slots:
     void on_buttonSave_Clicked();
     void on_buttonCancel_Clicked();

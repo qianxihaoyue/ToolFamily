@@ -283,22 +283,11 @@ void ScreenShotWidget::paintEvent(QPaintEvent *event)
     update();
     //显示按钮与标签
     if(this->height()<m_endPos.y()+30){
-        // buttonSave->move(rect.x()+rect.width()-buttonSave->width(),rect.y()+rect.height()-30);
-        // buttonCancel->move(rect.x()+rect.width()-buttonSave->width()-buttonCancel->width(),rect.y()+rect.height()-30);
-        // toolbar->setVisible(true);
-        // actionSave->setVisible(true);
-        // actionCancel->setVisible(true);
-        // actionTempStore->setVisible(true);
         toolbar->move(rect.x(),rect.y()+rect.height()+20);
 
     }
     else{
-        // buttonSave->move(rect.x()+rect.width()-buttonSave->width(),rect.y()+rect.height());
-        // buttonCancel->move(rect.x()+rect.width()-buttonSave->width()-buttonCancel->width(),rect.y()+rect.height());
-        // toolbar->setVisible(true);
-        // actionSave->setVisible(true);
-        // actionCancel->setVisible(true);
-        // actionTempStore->setVisible(true);
+
         toolbar->move(rect.x(),rect.y()+rect.height()+20);
         // toolbar->show();
     }
