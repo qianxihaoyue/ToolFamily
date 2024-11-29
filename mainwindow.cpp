@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowTitle("ToolFamily");
 
 
-    QAction* actionScreenShot=ui->toolBar->findChild<QAction*>("actionScreenShot");
+    actionScreenShot=ui->toolBar->findChild<QAction*>("actionScreenShot");
     connect(actionScreenShot,&QAction::triggered,this,&MainWindow::on_actionScreenShot_triggered);
 
     trayIcon = new QSystemTrayIcon(this);
@@ -28,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
         }
     });
     trayIcon->show();
+
+
 
     // QShortcut *shortcut = new QShortcut(QKeySequence("Ctrl+Alt+A"), this);
     // connect(shortcut, &QShortcut::activated,this,&MainWindow::on_actionScreenShot_triggered);
@@ -54,11 +56,11 @@ void MainWindow::on_actionScreenShot_triggered()
 
 
 
-void MainWindow::changeEvent(QEvent *event)  {
-    if (event->type() == QEvent::WindowStateChange) {
-        if (this->windowState() & Qt::WindowMinimized) {
-            this->hide();
-        }
-    }
-}
+// void MainWindow::changeEvent(QEvent *event)  {
+//     if (event->type() == QEvent::WindowStateChange) {
+//         if (this->windowState() & Qt::WindowMinimized) {
+//             this->hide();
+//         }
+//     }
+// }
 

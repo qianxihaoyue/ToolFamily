@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include"screenshotwidget.h"
-
+#include<QHotkey>
 #include <QMainWindow>
 #include <QSystemTrayIcon>
 #include<QIcon>
@@ -22,13 +22,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-protected:
-    void changeEvent(QEvent *event) override ;
+// protected:
+//     void changeEvent(QEvent *event) override ;
 
-private slots:
+public slots:
     void on_actionScreenShot_triggered();
 
-
+public:
+    QAction* actionScreenShot;
 
 private:
     Ui::MainWindow *ui;
