@@ -17,6 +17,12 @@ MainWindow::MainWindow(QWidget *parent)
     trayIcon->setIcon(QIcon(":/sources/tools.png"));
     trayIcon->setToolTip("ToolFamily");
 
+    QMenu* trayMenu = new QMenu(this);;
+    trayMenu->addAction("Exit", this, &MainWindow::on_action_close);
+    trayMenu->addAction("Show", this, &MainWindow::on_action_show);
+    trayIcon->setContextMenu(trayMenu);
+
+
 
     connect(trayIcon, &QSystemTrayIcon::activated, [&](QSystemTrayIcon::ActivationReason reason) {
         if (reason == QSystemTrayIcon::Trigger) {
@@ -42,6 +48,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    this->hide();
+    event->ignore();
+}
+
+
+
 void MainWindow::on_actionScreenShot_triggered()
 {
     if(screenshotwidget_1!=nullptr){
@@ -52,6 +66,19 @@ void MainWindow::on_actionScreenShot_triggered()
     screenshotwidget_1=new ScreenShotWidget();
     screenshotwidget_1->showFullScreen();
     // this->setWindowOpacity(1);
+}
+
+void MainWindow::on_action_close()
+{
+    this->close();
+}
+
+void MainWindow::on_action_show()
+{
+    this->show();
+    //窗口设置为活动，并至于顶层
+    this->setWindowState(Qt::WindowActive);
+    this->activateWindow();
 }
 
 
