@@ -22,11 +22,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-// protected:
-//     void changeEvent(QEvent *event) override ;
+protected:
+    // void changeEvent(QEvent *event) override ;
+    void closeEvent(QCloseEvent *event) override;
 
 public slots:
     void on_actionScreenShot_triggered();
+    void on_action_close();
+    void on_action_show();
 
 public:
     QAction* actionScreenShot;
