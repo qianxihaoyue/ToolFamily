@@ -71,6 +71,7 @@ void MainWindow::on_actionScreenShot_triggered()
 void MainWindow::on_action_close()
 {
     this->close();
+    QApplication::exit(0);
 }
 
 void MainWindow::on_action_show()
