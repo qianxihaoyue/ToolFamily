@@ -39,6 +39,7 @@ target_link_libraries(ToolFamily PRIVATE Qt${QT_VERSION_MAJOR}::Widgets QHotkey:
 if(${QT_VERSION} VERSION_LESS 6.1.0)
   set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.ToolFamily)
 endif()
+
 set_target_properties(ToolFamily PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
@@ -62,8 +63,11 @@ endif()
 
 
 
-
+############################################################
 set(CMAKE_PREFIX_PATH "D:/AC++Code/tool333")
+###########################################################
+
+
 
 if(WIN32)
     set(executable_path "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_BINDIR}/$<TARGET_FILE_NAME:ToolFamily>")

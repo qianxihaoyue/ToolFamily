@@ -1,3 +1,5 @@
+
+#生成静态链接库
 add_library(qhotkey qhotkey.cpp )
 add_library(QHotkey::QHotkey ALIAS qhotkey)
 target_link_libraries(qhotkey PUBLIC Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Gui)
@@ -5,7 +7,6 @@ target_link_libraries(qhotkey PUBLIC Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_
 if(APPLE)
     find_library(CARBON_LIBRARY Carbon)
     mark_as_advanced(CARBON_LIBRARY)
-
     target_sources(qhotkey PRIVATE qhotkey_mac.cpp)
     target_link_libraries(qhotkey PRIVATE ${CARBON_LIBRARY})
 elseif(WIN32)
@@ -26,8 +27,8 @@ else()
     target_sources(qhotkey PRIVATE qhotkey_x11.cpp)
 endif()
 
-target_include_directories(qhotkey
-    PUBLIC
+#链接头文件
+target_include_directories(qhotkey PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 

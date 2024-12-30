@@ -79,7 +79,7 @@ private:
     QToolBar *toolbar;
     QAction* actionCancel;
     QAction* actionSave;
-    QAction* actionTempStore;
+    QAction* actionTempStore; //暂存
 };
 
 #endif // SCREENSHOTWIDGET_H
