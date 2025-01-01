@@ -26,7 +26,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         res.qrc
-        cutwidget.h cutwidget.cpp
+        cutwidget.h cutwidget.cpp cutwidget.ui
+
+
     )
 else()
     add_executable(ToolFamily

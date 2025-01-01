@@ -3,13 +3,20 @@
 
 #include <QWidget>
 
+namespace Ui {
+class CutWidget;
+}
+
 class CutWidget : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit CutWidget(QWidget *parent = nullptr);
+    ~CutWidget();
 
-signals:
+private:
+    Ui::CutWidget *ui;
 };
 
 #endif // CUTWIDGET_H
