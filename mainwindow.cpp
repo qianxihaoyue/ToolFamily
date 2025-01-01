@@ -10,17 +10,24 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowTitle("ToolFamily");
 
 
+    //toolbar
     actionScreenShot=ui->toolBar->findChild<QAction*>("actionScreenShot");
     connect(actionScreenShot,&QAction::triggered,this,&MainWindow::on_actionScreenShot_triggered);
+    actionCut=ui->toolBar->findChild<QAction*>("actionCut");
+    connect(actionCut,&QAction::triggered,this,&MainWindow::on_actionCut_triggered);
 
+
+
+
+    //底部托盘
     trayIcon = new QSystemTrayIcon(this);
     trayIcon->setIcon(QIcon(":/sources/tools.png"));
     trayIcon->setToolTip("ToolFamily");
-
     QMenu* trayMenu = new QMenu(this);;
     trayMenu->addAction("Exit", this, &MainWindow::on_action_close);
     trayMenu->addAction("Show", this, &MainWindow::on_action_show);
     trayIcon->setContextMenu(trayMenu);
+
 
 
 
@@ -67,6 +74,15 @@ void MainWindow::on_actionScreenShot_triggered()
     screenshotwidget_1->showFullScreen();
     // this->setWindowOpacity(1);
 }
+
+
+void MainWindow::on_actionCut_triggered()
+{
+    qDebug()<<"on_actionCut_triggered";
+    cutwidget_1=new CutWidget();
+    cutwidget_1->show();
+}
+
 
 void MainWindow::on_action_close()
 {

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include"screenshotwidget.h"
+#include"cutwidget.h"
 #include<QHotkey>
 #include <QMainWindow>
 #include <QSystemTrayIcon>
@@ -27,16 +28,23 @@ protected:
     void closeEvent(QCloseEvent *event) override;
 
 public slots:
+    //toobar
     void on_actionScreenShot_triggered();
+    void on_actionCut_triggered();
+
+    //traymenu
     void on_action_close();
     void on_action_show();
 
-public:
-    QAction* actionScreenShot;
 
 private:
     Ui::MainWindow *ui;
     ScreenShotWidget *screenshotwidget_1;
+    CutWidget  *cutwidget_1;
+    //底部托盘
     QSystemTrayIcon *trayIcon;
+    //toolbaraction
+    QAction* actionScreenShot;
+    QAction* actionCut;
 };
 #endif // MAINWINDOW_H

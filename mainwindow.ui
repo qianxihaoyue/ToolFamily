@@ -46,6 +46,8 @@
    </attribute>
    <addaction name="actionScreenShot"/>
    <addaction name="separator"/>
+   <addaction name="actionCut"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionScreenShot">
    <property name="icon">
@@ -66,6 +68,21 @@
    </property>
    <property name="priority">
     <enum>QAction::Priority::NormalPriority</enum>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/sources/cut.png</normaloff>:/sources/cut.png</iconset>
+   </property>
+   <property name="text">
+    <string>裁剪</string>
+   </property>
+   <property name="toolTip">
+    <string>裁剪图像</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
    </property>
   </action>
  </widget>
