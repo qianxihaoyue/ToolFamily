@@ -48,7 +48,7 @@ protected:
 private slots:
     void on_buttonSave_Clicked();
     void on_buttonCancel_Clicked();
-    void on_buttionTempStore_Clicked();
+    void on_buttonTempStore_Clicked();
 private:
     QPoint getPointInWhichSqure(QPoint point);
 
@@ -57,9 +57,11 @@ private:
     QPushButton *buttonCancel;
     QLabel *lblHeightWidth;
     QLabel *lblMagnifyGlass;
+
     QPainter m_painter;
-    QPoint m_startPos;
-    QPoint m_endPos;           //用于记录生成的截图区域
+
+    QPoint m_startPos;   //起始点
+    QPoint m_endPos;     //结束点
     QPoint m_oldPos;
     QPoint m_distancePos;     //用于拖拽截图区域
     bool m_screenshot_active;

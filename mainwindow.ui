@@ -48,6 +48,9 @@
    <addaction name="separator"/>
    <addaction name="actionCut"/>
    <addaction name="separator"/>
+   <addaction name="actionTransform"/>
+   <addaction name="separator"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionScreenShot">
    <property name="icon">
@@ -80,6 +83,36 @@
    </property>
    <property name="toolTip">
     <string>裁剪图像</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionTransform">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/sources/image_transform.png</normaloff>:/sources/image_transform.png</iconset>
+   </property>
+   <property name="text">
+    <string>Transform</string>
+   </property>
+   <property name="toolTip">
+    <string>图像格式转换</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionOCR">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/sources/image_.png</normaloff>:/sources/image_.png</iconset>
+   </property>
+   <property name="text">
+    <string>OCR</string>
+   </property>
+   <property name="toolTip">
+    <string>文字识别</string>
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::NoRole</enum>

@@ -6,5 +6,7 @@
         <file>sources/screenshot.png</file>
         <file>sources/tools.png</file>
         <file>sources/cut.png</file>
+        <file>sources/image_transform.png</file>
+        <file>sources/image_.png</file>
     </qresource>
 </RCC>

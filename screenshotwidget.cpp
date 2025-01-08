@@ -25,9 +25,6 @@ ScreenShotWidget::ScreenShotWidget(QWidget *parent) :
     // buttonCancel->setFixedSize(35,30);
     // buttonCancel->setIcon(QIcon(":/sources/xmark.png"));
     // buttonCancel->setVisible(false);
-
-
-
     lblHeightWidth=new QLabel(this);
     lblHeightWidth->setParent(this);
     lblHeightWidth->setFixedSize(100,10);
@@ -42,8 +39,6 @@ ScreenShotWidget::ScreenShotWidget(QWidget *parent) :
 
     //toobar
     toolbar=new QToolBar(this);
-
-
     toolbar->setFixedSize(300,35);
     toolbar->setStyleSheet("QToolBar {background-color:white;}");
 
@@ -59,13 +54,7 @@ ScreenShotWidget::ScreenShotWidget(QWidget *parent) :
     actionTempStore->setIcon(QIcon(":/sources/cmark.png"));
     toolbar->addAction(actionTempStore);
 
-    // actionSave->setVisible(false);
-    // actionCancel->setVisible(false);
-    // actionTempStore->setVisible(false);
     toolbar->setVisible(false);
-    // toolbar->hide();
-
-
 
     //设置鼠标光标模式为十字
     setCursor(Qt::CursorShape::CrossCursor);
@@ -75,7 +64,7 @@ ScreenShotWidget::ScreenShotWidget(QWidget *parent) :
     // connect(this->buttonCancel,SIGNAL(clicked()),this,SLOT(on_buttonCancel_Clicked()));
     connect(actionCancel,&QAction::triggered,this,&ScreenShotWidget::on_buttonCancel_Clicked);
     connect(actionSave,&QAction::triggered,this,&ScreenShotWidget::on_buttonSave_Clicked);
-    connect(actionTempStore,&QAction::triggered,this,&ScreenShotWidget::on_buttionTempStore_Clicked);
+    connect(actionTempStore,&QAction::triggered,this,&ScreenShotWidget::on_buttonTempStore_Clicked);
 
 }
 
@@ -94,18 +83,6 @@ void ScreenShotWidget::mousePressEvent(QMouseEvent *event)
             m_screenshot_active=true;
         }
     }
-    // else if(event->button()==Qt::RightButton)//重新截图
-    // {
-    //     if(m_endPos.isNull())
-    //         on_buttonCancel_Clicked();
-    //     m_startPos=QPoint(0,0);
-    //     m_endPos=QPoint(0,0);
-    //     // buttonSave->setVisible(false);
-    //     // buttonCancel->setVisible(false);
-    //     lblHeightWidth->setVisible(false);
-    //     setCursor(Qt::CursorShape::CrossCursor);
-    //     update();
-    // }
 }
 
 void ScreenShotWidget::mouseMoveEvent(QMouseEvent *event)
@@ -225,15 +202,18 @@ void ScreenShotWidget::paintEvent(QPaintEvent *event)
     QColor color(11,218,81);
     QPen pen(color,1,Qt::SolidLine);
     painter.setPen(pen);
+
     //边界条件限制
     if(m_startPos.x()>=m_endPos.x())m_endPos.rx()=m_startPos.x();
     if(m_startPos.y()>=m_endPos.y())m_endPos.ry()=m_startPos.y();
+
     //画矩形,并将内部置为透明
     QRect rect(m_startPos, m_endPos);
     painter.setCompositionMode(QPainter::CompositionMode_DestinationIn);
     painter.fillRect(rect,QColor(0,0,0,0));
     painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
     painter.drawRect(rect.normalized());
+
     // 获取矩形的四个顶点和四条边的中点
     m_topLeft=QPoint(rect.left(),rect.top());
     m_topRight=QPoint(rect.right()+1,rect.top());
@@ -265,6 +245,7 @@ void ScreenShotWidget::paintEvent(QPaintEvent *event)
     painter.fillRect(pointRect, color);
     pointRect.moveCenter(m_rightCenter);
     painter.fillRect(pointRect, color);
+
     //显示放大镜
     if(cursor().shape()!=Qt::ClosedHandCursor)
     {
@@ -281,6 +262,7 @@ void ScreenShotWidget::paintEvent(QPaintEvent *event)
         painter.drawLine(startPoint.x()+cursorPixmap.width()/2+1,startPoint.y(),startPoint.x()+cursorPixmap.width()/2+1,startPoint.y()+cursorPixmap.height());
     }
     update();
+
     //显示按钮与标签
     if(this->height()<m_endPos.y()+30){
         toolbar->move(rect.x(),rect.y()+rect.height()+20);
@@ -302,6 +284,7 @@ void ScreenShotWidget::on_buttonSave_Clicked()
     close();
     QThread::msleep(30);
     QRect rect = QRect(m_startPos, m_endPos);
+
     //获取存储路径
     QDateTime currentDate=QDateTime::currentDateTime();
     QString mCURDIr = QCoreApplication::applicationDirPath();
@@ -312,19 +295,15 @@ void ScreenShotWidget::on_buttonSave_Clicked()
     QScreen *screen=QGuiApplication::primaryScreen();
     QPixmap pixmap=screen->grabWindow(0,rect.x(),rect.y(),rect.width(),rect.height());
 
-
-
     //选择路径
     QString filter = tr("Images (*.png);;Images (*.bmp);;Images (*.tif);;Images (*.jpg)");
     filePath = QFileDialog::getSaveFileName(this, tr("保存文件"), filePath, filter);
     QDir dir2=QDir(filePath);
     dir2.cdUp();
     if(!dir2.exists(dir2.path())) dir2.mkdir(dir2.path());
-
     // qDebug()<<dir2.path();
     // QDir dir;
     // if(!dir.exists(mCURDIr + "/screenshot")) dir.mkdir(mCURDIr + "/screenshot");
-
     if (!pixmap.save(filePath)) QMessageBox::warning(this, tr("提示"), tr("保存图片失败"));
 }
 
@@ -336,7 +315,7 @@ void ScreenShotWidget::on_buttonCancel_Clicked()
     close();
 }
 
-void ScreenShotWidget::on_buttionTempStore_Clicked()
+void ScreenShotWidget::on_buttonTempStore_Clicked()
 {
     //清除笔刷,创建一个矩形区域
     close();
@@ -347,26 +326,17 @@ void ScreenShotWidget::on_buttionTempStore_Clicked()
     QString mCURDIr = QCoreApplication::applicationDirPath();
     QString filePath=mCURDIr + "/screenshot/"+currentDate.toString("MMdd_hhmmss")+".png";
 
-
     //获取矩形区域截图(减去笔刷)，存储在pixmap中
     QScreen *screen=QGuiApplication::primaryScreen();
     QPixmap pixmap=screen->grabWindow(0,rect.x(),rect.y(),rect.width(),rect.height());
 
 
-
     //保存到剪切板
-
     QClipboard *clipboard = QGuiApplication::clipboard();
-
     // 将Pixmap图像设置到剪切板中
     clipboard->setPixmap(pixmap);
 
 }
-
-
-
-
-
 
 
 
