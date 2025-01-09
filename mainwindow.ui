@@ -30,7 +30,7 @@
      <x>0</x>
      <y>0</y>
      <width>885</width>
-     <height>21</height>
+     <height>27</height>
     </rect>
    </property>
   </widget>
@@ -50,7 +50,6 @@
    <addaction name="separator"/>
    <addaction name="actionTransform"/>
    <addaction name="separator"/>
-   <addaction name="separator"/>
   </widget>
   <action name="actionScreenShot">
    <property name="icon">
@@ -67,10 +66,10 @@
     <string>Ctrl+Alt+A</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
+    <enum>QAction::NoRole</enum>
    </property>
    <property name="priority">
-    <enum>QAction::Priority::NormalPriority</enum>
+    <enum>QAction::NormalPriority</enum>
    </property>
   </action>
   <action name="actionCut">
@@ -85,7 +84,7 @@
     <string>裁剪图像</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
+    <enum>QAction::NoRole</enum>
    </property>
   </action>
   <action name="actionTransform">
@@ -100,7 +99,7 @@
     <string>图像格式转换</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
+    <enum>QAction::NoRole</enum>
    </property>
   </action>
   <action name="actionOCR">
@@ -115,7 +114,7 @@
     <string>文字识别</string>
    </property>
    <property name="menuRole">
-    <enum>QAction::MenuRole::NoRole</enum>
+    <enum>QAction::NoRole</enum>
    </property>
   </action>
  </widget>

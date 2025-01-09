@@ -55,7 +55,6 @@ private:
 private:
     QPushButton *buttonSave;
     QPushButton *buttonCancel;
-    QLabel *lblHeightWidth;
     QLabel *lblMagnifyGlass;
 
     QPainter m_painter;
@@ -64,6 +63,7 @@ private:
     QPoint m_endPos;     //结束点
     QPoint m_oldPos;
     QPoint m_distancePos;     //用于拖拽截图区域
+
     bool m_screenshot_active;
 
     QPoint m_topLeft;

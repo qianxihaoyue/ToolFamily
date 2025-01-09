@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     ,screenshotwidget_1(nullptr)
+    ,translate_image_widget_1(nullptr)
 {
     ui->setupUi(this);
     this->setWindowTitle("ToolFamily");

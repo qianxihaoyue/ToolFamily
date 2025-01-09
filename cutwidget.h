@@ -2,7 +2,7 @@
 #define CUTWIDGET_H
 
 #include <QWidget>
-
+#include<QStyle>
 namespace Ui {
 class CutWidget;
 }

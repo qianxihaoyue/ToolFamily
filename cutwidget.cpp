@@ -7,6 +7,9 @@ CutWidget::CutWidget(QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowTitle("裁剪界面");
+
+
+
 }
 
 CutWidget::~CutWidget()

@@ -27,6 +27,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         res.qrc
         cutwidget.h cutwidget.cpp cutwidget.ui
+        translateimage.h translateimage.cpp translateimage.ui
 
 
     )
