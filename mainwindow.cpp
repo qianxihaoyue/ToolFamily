@@ -16,8 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(actionScreenShot,&QAction::triggered,this,&MainWindow::on_actionScreenShot_triggered);
     actionCut=ui->toolBar->findChild<QAction*>("actionCut");
     connect(actionCut,&QAction::triggered,this,&MainWindow::on_actionCut_triggered);
-
-
+    actionTranslate=ui->toolBar->findChild<QAction*>("actionTranslate");
+     connect(actionTranslate,&QAction::triggered,this,&MainWindow::on_actionTranslate_triggered);
 
 
     //底部托盘
@@ -82,6 +82,13 @@ void MainWindow::on_actionCut_triggered()
     qDebug()<<"on_actionCut_triggered";
     cutwidget_1=new CutWidget();
     cutwidget_1->show();
+}
+
+void MainWindow::on_actionTranslate_triggered()
+{
+    qDebug()<<"on_actionTranslate_triggered";
+    translate_image_widget_1=new TranslateImageWidget();
+    translate_image_widget_1->show();
 }
 
 
