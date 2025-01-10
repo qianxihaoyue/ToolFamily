@@ -19,7 +19,11 @@ public:
     explicit TranslateImageWidget(QWidget *parent = nullptr);
     ~TranslateImageWidget();
 public slots:
-     void on_pushbutton_openfile();
+    void on_pushbutton0_openfile();
+    void on_pushbutton1_trans();
+    // void on_pushbutton2_trans();
+    // void on_pushbutton3_trans();
+    // void on_pushbutton4_trans();
 
 private:
     Ui::TranslateImageWidget *ui;
@@ -27,6 +31,8 @@ private:
     bool m_have_image_flag;
     QGraphicsView *view;
     QGraphicsScene *scene;
+    QImage *image;
+    QString *image_path;
 };
 
 #endif // TRANSLATEIMAGEWIDGET_H
